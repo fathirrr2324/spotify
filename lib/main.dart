@@ -9,7 +9,6 @@ class SpotifyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //final Respon = MediaQuery.of(context);size;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Spotify Clone',
@@ -31,15 +30,12 @@ class SpotifyHome extends StatefulWidget {
 class _SpotifyHomeState extends State<SpotifyHome>
     with SingleTickerProviderStateMixin {
   int _selectedIndex = 0;
-
-  // ignore: unused_field
-  late TabController _tabController, _navController;
+  late TabController _tabController;
 
   @override
   void initState() {
     super.initState();
-    _tabController= TabController(length: 3, vsync: this);
-    _navController = TabController(length: 3, vsync: this);
+    _tabController = TabController(length: 3, vsync: this);
   }
 
   @override
@@ -62,7 +58,6 @@ class _SpotifyHomeState extends State<SpotifyHome>
             onPressed: () {},
           ),
         ],
-        //tabar
         bottom: TabBar(
           controller: _tabController,
           tabs: [
@@ -75,17 +70,15 @@ class _SpotifyHomeState extends State<SpotifyHome>
           labelColor: Colors.white,
         ),
       ),
-      body: TabBarView(
-        controller: _tabController,
+      body: IndexedStack(
+        index: _selectedIndex,
         children: [
           _buildHomeTab(),
           _buildSearchTab(),
           _buildLibraryTab(),
         ],
       ),
-      //navbar
       bottomNavigationBar: BottomNavigationBar(
-
         backgroundColor: Colors.black,
         selectedItemColor: Colors.white,
         unselectedItemColor: Colors.grey,
@@ -93,8 +86,6 @@ class _SpotifyHomeState extends State<SpotifyHome>
         onTap: (index) {
           setState(() {
             _selectedIndex = index;
-            // ignore: unused_label
-            controller: _navController;
           });
         },
         items: [
