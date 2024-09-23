@@ -5,9 +5,11 @@ void main() {
 }
 
 class SpotifyApp extends StatelessWidget {
+  get size => null;
+
   @override
   Widget build(BuildContext context) {
-    final respon MediaQuery.of()
+    //final Respon = MediaQuery.of(context);size;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Spotify Clone',
@@ -26,15 +28,18 @@ class SpotifyHome extends StatefulWidget {
   _SpotifyHomeState createState() => _SpotifyHomeState();
 }
 
-class _SpotifyHomeState extends State<SpotifyHome> with SingleTickerProviderStateMixin {
+class _SpotifyHomeState extends State<SpotifyHome>
+    with SingleTickerProviderStateMixin {
   int _selectedIndex = 0;
 
-  late TabController _tabController;
+  // ignore: unused_field
+  late TabController _tabController, _navController;
 
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 3, vsync: this);
+    _tabController= TabController(length: 3, vsync: this);
+    _navController = TabController(length: 3, vsync: this);
   }
 
   @override
@@ -57,6 +62,7 @@ class _SpotifyHomeState extends State<SpotifyHome> with SingleTickerProviderStat
             onPressed: () {},
           ),
         ],
+        //tabar
         bottom: TabBar(
           controller: _tabController,
           tabs: [
@@ -77,7 +83,9 @@ class _SpotifyHomeState extends State<SpotifyHome> with SingleTickerProviderStat
           _buildLibraryTab(),
         ],
       ),
+      //navbar
       bottomNavigationBar: BottomNavigationBar(
+
         backgroundColor: Colors.black,
         selectedItemColor: Colors.white,
         unselectedItemColor: Colors.grey,
@@ -85,6 +93,8 @@ class _SpotifyHomeState extends State<SpotifyHome> with SingleTickerProviderStat
         onTap: (index) {
           setState(() {
             _selectedIndex = index;
+            // ignore: unused_label
+            controller: _navController;
           });
         },
         items: [
@@ -127,7 +137,10 @@ class _SpotifyHomeState extends State<SpotifyHome> with SingleTickerProviderStat
         SizedBox(height: 16),
         _buildSectionTitle('Popular Albums'),
         _buildHorizontalList([
-          {"title": "Future Nostalgia", "imageUrl": "assets/futurenostalgia.jpg"},
+          {
+            "title": "Future Nostalgia",
+            "imageUrl": "assets/futurenostalgia.jpg"
+          },
           {"title": "After Hours", "imageUrl": "assets/afterhours.jpg"},
           {"title": "Hollywood's Bleeding", "imageUrl": "assets/hollywood.jpg"},
         ]),
