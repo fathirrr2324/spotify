@@ -5,9 +5,10 @@ void main() {
 }
 
 class SpotifyApp extends StatelessWidget {
+  get size => null;
+
   @override
   Widget build(BuildContext context) {
-    final respon MediaQuery.of()
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Spotify Clone',
@@ -26,9 +27,9 @@ class SpotifyHome extends StatefulWidget {
   _SpotifyHomeState createState() => _SpotifyHomeState();
 }
 
-class _SpotifyHomeState extends State<SpotifyHome> with SingleTickerProviderStateMixin {
+class _SpotifyHomeState extends State<SpotifyHome>
+    with SingleTickerProviderStateMixin {
   int _selectedIndex = 0;
-
   late TabController _tabController;
 
   @override
@@ -69,8 +70,8 @@ class _SpotifyHomeState extends State<SpotifyHome> with SingleTickerProviderStat
           labelColor: Colors.white,
         ),
       ),
-      body: TabBarView(
-        controller: _tabController,
+      body: IndexedStack(
+        index: _selectedIndex,
         children: [
           _buildHomeTab(),
           _buildSearchTab(),
@@ -127,7 +128,10 @@ class _SpotifyHomeState extends State<SpotifyHome> with SingleTickerProviderStat
         SizedBox(height: 16),
         _buildSectionTitle('Popular Albums'),
         _buildHorizontalList([
-          {"title": "Future Nostalgia", "imageUrl": "assets/futurenostalgia.jpg"},
+          {
+            "title": "Future Nostalgia",
+            "imageUrl": "assets/futurenostalgia.jpg"
+          },
           {"title": "After Hours", "imageUrl": "assets/afterhours.jpg"},
           {"title": "Hollywood's Bleeding", "imageUrl": "assets/hollywood.jpg"},
         ]),
